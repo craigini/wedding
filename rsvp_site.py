@@ -2,20 +2,15 @@ import streamlit as st
 import datetime
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-import streamlit as st
-import json
-from oauth2client.service_account import ServiceAccountCredentials
-
 
 # ---------------------------
 # Google Sheets Setup
 # ---------------------------
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-service_account_info = dict(st.secrets["gcp_service_account"])
+service_account_info = dict(st.secrets["gcp_service_account"])  # Make sure the secret is properly set
 creds = ServiceAccountCredentials.from_json_keyfile_dict(service_account_info, scope)
 client = gspread.authorize(creds)
-sheet = client.open("Wedding RSVP Responses").sheet1
-
+sheet = client.open("Wedding RSVP Responses").sheet1  # Ensure sheet name is correct
 
 # ---------------------------
 # Streamlit Page Configuration
